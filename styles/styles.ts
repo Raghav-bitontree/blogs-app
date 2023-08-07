@@ -1,5 +1,15 @@
 import { css } from "@emotion/css";
 
+export const header = css`
+  background-color: black;
+  height: 40px;
+  color: white;
+  width: 100vw !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const pageTitleSection = css`
   display: flex;
   padding: 30px 80px;
@@ -91,5 +101,25 @@ export const blogInnerContainer = css`
 export const blogByIdContainer = css`
   display: flex;
   flex-direction: column;
-  margin: 20px 80px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20%;
+  gap: 20px;
+`;
+
+export const blogListHeader = css`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  ${paddingBottom30};
+`;
+
+export const blogTitle = css`
+  font-size: 64px;
+`;
+
+export const blogDescription = css`
+  color: gray;
+  font-size: 20px;
+  font-weight: 400;
 `;

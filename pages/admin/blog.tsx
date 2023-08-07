@@ -1,11 +1,7 @@
 import AdminBlogControl from "@/components/admin-blog-container/admin-blog-control";
 
 const BlogControl = () => {
-  return (
-    <>
-      <AdminBlogControl />
-    </>
-  );
+  return <AdminBlogControl />;
 };
 
 export default BlogControl;

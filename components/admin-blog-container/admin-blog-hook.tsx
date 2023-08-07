@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-export default function useAdminBlogControl() {
+export default function useAdminBlog() {
   const [currentBlogData, setCurrentBlogData] = useState();
   const [modal, setModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);

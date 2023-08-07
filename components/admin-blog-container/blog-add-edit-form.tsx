@@ -34,44 +34,50 @@ const BlogAddEditForm = ({
       reader.readAsDataURL(file);
     }
   };
+
+  const intialFormikValues = {
+    title: currentBlogData?.title ? currentBlogData?.title : "",
+    description: currentBlogData?.description
+      ? currentBlogData?.description
+      : "",
+    body: currentBlogData?.body ? currentBlogData?.body : "",
+  };
+
+  const validateForm = (values: any) => {
+    const errors: any = {};
+    if (!values.title) {
+      errors.title = "Title is Required";
+    }
+    if (!values.description) {
+      errors.description = "Description is Required";
+    }
+    if (!values.body) {
+      errors.body = "Body is  Required";
+    }
+    return errors;
+  };
+
+  const handleSubmit = (values: any) => {
+    isEdit
+      ? dispatch(
+          updateBlogById({
+            id: currentBlogData?.id,
+            title: values.title,
+            description: values?.description,
+            body: values?.body,
+            image: image ? image : currentBlogData?.image,
+          }) as any
+        )
+      : dispatch(createNewBlog({ values, image }) as any);
+    setModal(false);
+    setIsEdit(false);
+  };
   return (
     <div>
       <Formik
-        initialValues={{
-          title: currentBlogData?.title ? currentBlogData?.title : "",
-          description: currentBlogData?.description
-            ? currentBlogData?.description
-            : "",
-          body: currentBlogData?.body ? currentBlogData?.body : "",
-        }}
-        validate={(values) => {
-          const errors: any = {};
-          if (!values.title) {
-            errors.title = "Title is Required";
-          }
-          if (!values.description) {
-            errors.description = "Description is Required";
-          }
-          if (!values.body) {
-            errors.body = "Body is  Required";
-          }
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          isEdit
-            ? dispatch(
-                updateBlogById({
-                  id: currentBlogData?.id,
-                  title: values.title,
-                  description: values?.description,
-                  body: values?.body,
-                  image: image ? image : currentBlogData?.image,
-                }) as any
-              )
-            : dispatch(createNewBlog({ values, image }) as any);
-          setModal(false);
-          setIsEdit(false);
-        }}
+        initialValues={intialFormikValues}
+        validate={(values) => validateForm(values)}
+        onSubmit={(values) => handleSubmit(values)}
       >
         {({
           values,

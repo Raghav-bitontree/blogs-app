@@ -6,8 +6,10 @@ import {
   blogInnerContainer,
   blogLink,
   blogListContainer,
+  blogListHeader,
   paddingBottom30,
 } from "@/styles/styles";
+import { ArrowBackIos } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +25,13 @@ const BlogList = () => {
 
   return (
     <div className={blogListContainer}>
-      <h1 className={paddingBottom30}>Blogs List</h1>
+      <div className={blogListHeader}>
+        <ArrowBackIos
+          style={{ cursor: "pointer" }}
+          onClick={() => router.back()}
+        />
+        <h1>Blogs List</h1>
+      </div>
       {blogs &&
         blogs.length > 0 &&
         blogs.map(({ values }: any) => {

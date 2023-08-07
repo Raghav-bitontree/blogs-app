@@ -12,6 +12,7 @@ const MuiModal = ({
   deleteModal,
   setDeleteModal,
   deleteData,
+  setIsEdit,
 }: any) => {
   const dispatch = useDispatch();
   return (
@@ -19,6 +20,7 @@ const MuiModal = ({
       open={modal}
       onClose={() => {
         setModal(false);
+        setIsEdit(false);
       }}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"

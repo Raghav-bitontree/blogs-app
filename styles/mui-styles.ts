@@ -1,12 +1,3 @@
-const header = {
-  backgroundColor: "black",
-  height: "40px",
-  color: "white",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-};
-
 const modalStyle = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -19,4 +10,4 @@ const modalStyle = {
   p: 4,
 };
 
-export { header, modalStyle };
+export { modalStyle };

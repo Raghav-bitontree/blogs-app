@@ -97,7 +97,7 @@ export function fetchBlogById(blogId: string) {
       const findBlog = response.find((blog: any) => {
         return Number(blog.values.id) === Number(blogId);
       });
-      dispatch(getBlogs([findBlog]));
+      dispatch(getBlogs(findBlog));
     } catch (error) {
       console.log(error);
     }
@@ -121,12 +121,7 @@ export function createNewBlog(payload: any) {
   };
 }
 
-export const {
-  getBlog,
-  getBlogs,
-  getBlogById,
-  deleteBlog,
-  updateBlog,
-} = blogSlice.actions;
+export const { getBlog, getBlogs, getBlogById, deleteBlog, updateBlog } =
+  blogSlice.actions;
 
 export default blogSlice.reducer;
