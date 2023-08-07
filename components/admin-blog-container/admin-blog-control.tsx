@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import useAdminBlogControl from "./admin-blog-hook";
 
 const AdminBlogControl = () => {
-  const blogs = useSelector((state) => state.blogs.blogs);
+  const blogs = useSelector((state: any) => state.blogs.blogs);
   const {
     modal,
     setModal,
