@@ -63,8 +63,8 @@ const BlogAddEditForm = ({
                 })
               )
             : dispatch(createBlog({ values, image }));
-          setModal(false);
-          setIsEdit(false);
+            setModal(false);
+            setIsEdit(false);
         }}
       >
         {({

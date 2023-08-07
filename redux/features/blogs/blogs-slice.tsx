@@ -20,11 +20,17 @@ export const blogSlice = createSlice({
       state.blogs.find((item: any) => item.id === payload);
     },
     createBlog: (state, { payload }) => {
-      const savedBlogs = JSON.parse(localStorage.getItem("blogs") as string) || []
-      payload.values.id = Date.now();
-      payload.values.image = payload.image;
-      localStorage.setItem("blogs", JSON.stringify([payload, ...savedBlogs]))
-      state.blogs.unshift(payload?.values);
+      try {
+        const savedBlogs = localStorage.getItem("blogs")
+          ? JSON.parse(localStorage.getItem("blogs") as string)
+          : [];
+        payload.values.id = Date.now();
+        payload.values.image = payload.image;
+        localStorage.setItem("blogs", JSON.stringify([payload, ...savedBlogs]));
+        payload?.values && state.blogs.unshift(payload?.values);
+      } catch (err) {
+        console.log(err);
+      }
     },
     updateBlog: (state, { payload }) => {
       const findBlog = state.blogs.find((blog: any) => blog.id === payload.id);
@@ -45,32 +51,36 @@ export const blogSlice = createSlice({
 });
 
 export function fetchBlogs() {
-  return  (dispatch: (arg: any) => void) => {
-
+  return (dispatch: (arg: any) => void) => {
     try {
-      const response = JSON.parse(localStorage.getItem("blogs") as string)
+      const response = JSON.parse(localStorage.getItem("blogs") as string);
 
-      dispatch(getBlogs(response))
+      dispatch(getBlogs(response));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }
 
 export function fetchBlogById(blogId: string) {
-  return  (dispatch: (arg: any) => void) => {
-
+  return (dispatch: (arg: any) => void) => {
     try {
-      const response = JSON.parse(localStorage.getItem("blogs") as string)
-      
-      dispatch(getBlogs(response))
+      const response = JSON.parse(localStorage.getItem("blogs") as string);
+
+      dispatch(getBlogs(response));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }
 
-export const { getBlog, getBlogs, getBlogById, deleteBlog, createBlog, updateBlog } =
-  blogSlice.actions;
+export const {
+  getBlog,
+  getBlogs,
+  getBlogById,
+  deleteBlog,
+  createBlog,
+  updateBlog,
+} = blogSlice.actions;
 
 export default blogSlice.reducer;
