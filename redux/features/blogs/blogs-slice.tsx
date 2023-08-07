@@ -18,7 +18,7 @@ export const blogSlice = createSlice({
     },
     createBlog: (state, { payload }) => {
       payload.values.id = Date.now();
-      state.blogs.push(payload?.values);
+      state.blogs.unshift(payload?.values);
     },
     updateBlog: (state, { payload }) => {
       const findBlog = state.blogs.find((blog: any) => blog.id === payload.id);
