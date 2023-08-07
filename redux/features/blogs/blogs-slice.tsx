@@ -62,7 +62,7 @@ export function fetchBlogById(blogId: string) {
 
     try {
       const response = JSON.parse(localStorage.getItem("blogs") as string)
-
+      
       dispatch(getBlogs(response))
     } catch (error) {
       console.log(error)

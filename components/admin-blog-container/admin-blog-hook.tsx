@@ -26,7 +26,7 @@ export default function useAdminBlogControl() {
 
   const getTableData = (data: any) => {
     const list: any = [];
-    data.length > 0 &&
+    data?.length > 0 &&
       data?.forEach((item: any) => {
         let eachData = [
           item?.title,
