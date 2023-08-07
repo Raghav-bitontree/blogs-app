@@ -11,14 +11,19 @@ export const blogSlice = createSlice({
   initialState,
   reducers: {
     getBlog: (state, { payload }) => {
-      return state.blogs.find((item: any) => item.id === payload);
+      state.blogs.find((item: any) => item.id === payload);
     },
-    getAllBlogs: (state) => {
-      state.blogs;
+    getBlogs: (state, { payload }) => {
+      state.blogs = payload;
+    },
+    getBlogById: (state, { payload }) => {
+      state.blogs.find((item: any) => item.id === payload);
     },
     createBlog: (state, { payload }) => {
+      const savedBlogs = JSON.parse(localStorage.getItem("blogs") as string) || []
       payload.values.id = Date.now();
       payload.values.image = payload.image;
+      localStorage.setItem("blogs", JSON.stringify([payload, ...savedBlogs]))
       state.blogs.unshift(payload?.values);
     },
     updateBlog: (state, { payload }) => {
@@ -39,7 +44,33 @@ export const blogSlice = createSlice({
   },
 });
 
-export const { getBlog, getAllBlogs, deleteBlog, createBlog, updateBlog } =
+export function fetchBlogs() {
+  return  (dispatch: (arg: any) => void) => {
+
+    try {
+      const response = JSON.parse(localStorage.getItem("blogs") as string)
+
+      dispatch(getBlogs(response))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export function fetchBlogById(blogId: string) {
+  return  (dispatch: (arg: any) => void) => {
+
+    try {
+      const response = JSON.parse(localStorage.getItem("blogs") as string)
+
+      dispatch(getBlogs(response))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const { getBlog, getBlogs, getBlogById, deleteBlog, createBlog, updateBlog } =
   blogSlice.actions;
 
 export default blogSlice.reducer;

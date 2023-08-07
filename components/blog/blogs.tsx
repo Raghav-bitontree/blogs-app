@@ -1,35 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
 // eslint-disable-next-line @next/next/no-img-element
 
+import { fetchBlogs } from "@/redux/features/blogs/blogs-slice";
 import { blogLink } from "@/styles/styles";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const BlogList = () => {
   const router = useRouter();
+  const dispatch: any = useDispatch();
+  const blogs = useSelector((state: any) => state.blogs.blogs);
 
-  const blogs = [
-    {
-      title: "a",
-      description: "saffa",
-      body: "fsaffa",
-      image:
-        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
-    },
-    {
-      title: "a",
-      description: "saffa",
-      body: "fsaffa",
-      image:
-        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
-    },
-    {
-      title: "a",
-      description: "saffa",
-      body: "fsaffa",
-      image:
-        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
-    },
-  ];
+  useEffect(() => {
+    dispatch(fetchBlogs())
+   }, [dispatch])
+  
   return (
     <div
       style={{
@@ -42,12 +28,12 @@ const BlogList = () => {
       <h1 style={{ paddingBottom: "20px" }}>Blogs List</h1>
       {blogs &&
         blogs.length > 0 &&
-        blogs.map((item: any) => {
+        blogs.map(({values}: any) => {
           return (
-            <div style={{ display: "flex" }} key={item.title}>
+            <div style={{ display: "flex" }} key={values.title}>
               <img
-                src={item?.image}
-                alt={item?.title}
+                src={values?.image}
+                alt={values?.title}
                 height={"200px"}
                 width={"300px"}
               />
@@ -60,12 +46,12 @@ const BlogList = () => {
                 }}
               >
                 <div>
-                  <h2>{item?.title}</h2>
-                  <h4>{item?.description}</h4>
+                  <h2>{values?.title}</h2>
+                  <h4>{values?.description}</h4>
                 </div>
                 <span
                   className={blogLink}
-                  onClick={() => router.push(`/blogs/${item?.id}`)}
+                  onClick={() => router.push(`/blogs/${values?.id}`)}
                 >
                   Know more
                 </span>

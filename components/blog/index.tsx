@@ -1,17 +1,19 @@
-/* eslint-disable @next/next/no-img-element */
-import { getBlog } from "@/redux/features/blogs/blogs-slice";
+import { fetchBlogById } from "@/redux/features/blogs/blogs-slice";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const BlogById = () => {
   const { query } = useRouter();
   const { slug } = query;
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
+  const blogs = useSelector((state: any) => state.blogs.blogs);
 
   useEffect(() => {
-    const res = dispatch(getBlog(slug));
-  }, [query]);
+     dispatch(fetchBlogById(slug as string));
+    }, [dispatch])
+    
+  console.log(blogs,"res")
 
   const blog = {
     title: "a",
