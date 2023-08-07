@@ -3,3 +3,9 @@ export const options = {
 };
 
 export const columns = ["Title", "Image", "Read Blog", "Action"];
+
+export const formikInitialValue = {
+  title: "",
+  description: "",
+  body: "",
+};

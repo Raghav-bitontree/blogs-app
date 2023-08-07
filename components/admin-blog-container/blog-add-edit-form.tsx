@@ -18,6 +18,7 @@ const BlogAddEditForm = ({
   currentBlogData,
   isEdit,
   setIsEdit,
+  formValue,
 }: any) => {
   const dispatch = useDispatch();
   const [image, setImage] = useState("");
@@ -33,14 +34,6 @@ const BlogAddEditForm = ({
     if (file) {
       reader.readAsDataURL(file);
     }
-  };
-
-  const intialFormikValues = {
-    title: currentBlogData?.title ? currentBlogData?.title : "",
-    description: currentBlogData?.description
-      ? currentBlogData?.description
-      : "",
-    body: currentBlogData?.body ? currentBlogData?.body : "",
   };
 
   const validateForm = (values: any) => {
@@ -75,7 +68,7 @@ const BlogAddEditForm = ({
   return (
     <div>
       <Formik
-        initialValues={intialFormikValues}
+        initialValues={formValue}
         validate={(values) => validateForm(values)}
         onSubmit={(values) => handleSubmit(values)}
       >

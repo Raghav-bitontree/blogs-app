@@ -4,7 +4,7 @@ import {
   pageTitleSection,
   tableMargin,
 } from "@/styles/styles";
-import { columns, options } from "@/utils/helper";
+import { columns, formikInitialValue, options } from "@/utils/helper";
 import MUIDataTable from "mui-datatables";
 import MuiModal from "../common/modal";
 import BlogAddEditForm from "./blog-add-edit-form";
@@ -25,6 +25,8 @@ const AdminBlogControl = () => {
     deleteModal,
     setDeleteModal,
     deleteData,
+    formValue,
+    setFormValue,
   } = useAdminBlog();
 
   return (
@@ -34,7 +36,13 @@ const AdminBlogControl = () => {
         <h3 style={{ cursor: "pointer" }} onClick={() => router.push("/blogs")}>
           Blogs List
         </h3>
-        <button onClick={() => setModal(true)} className={addButton}>
+        <button
+          onClick={() => {
+            setFormValue(formikInitialValue);
+            setModal(true);
+          }}
+          className={addButton}
+        >
           Add Blog
         </button>
       </div>
@@ -59,6 +67,7 @@ const AdminBlogControl = () => {
             <BlogAddEditForm
               setModal={setModal}
               isEdit={isEdit}
+              formValue={formValue}
               setIsEdit={setIsEdit}
               currentBlogData={currentBlogData}
             />

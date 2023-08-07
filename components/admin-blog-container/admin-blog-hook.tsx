@@ -6,6 +6,7 @@ import {
   fetchBlogs,
 } from "@/redux/features/blogs/blogs-slice";
 import { blogLink } from "@/styles/styles";
+import { formikInitialValue } from "@/utils/helper";
 import { Delete, Edit } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -13,6 +14,7 @@ import { useDispatch } from "react-redux";
 
 export default function useAdminBlog() {
   const [currentBlogData, setCurrentBlogData] = useState();
+  const [formValue, setFormValue] = useState(formikInitialValue);
   const [modal, setModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
@@ -28,6 +30,11 @@ export default function useAdminBlog() {
     setCurrentBlogData(item);
     setModal(true);
     setIsEdit(true);
+    setFormValue({
+      title: item?.title,
+      description: item?.description,
+      body: item?.body,
+    });
   };
 
   const handleDelete = (item: any) => {
@@ -87,5 +94,7 @@ export default function useAdminBlog() {
     deleteModal,
     setDeleteModal,
     deleteData,
+    formValue,
+    setFormValue,
   };
 }
