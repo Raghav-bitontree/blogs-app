@@ -33,6 +33,14 @@ export const inputStyle = css`
   text-indent: 10px;
 `;
 
+export const textAreaStyle = css`
+  height: 100px;
+  border-radius: 6px;
+  border: 1px solid #d3d3d3;
+  text-indent: 10px;
+  padding-top: 10px;
+`;
+
 export const addEditFormSubmit = css`
   height: 40px;
   border-radius: 6px;
