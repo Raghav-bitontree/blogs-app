@@ -55,3 +55,33 @@ export const blogLink = css`
   color: blue;
   cursor: pointer;
 `;
+
+export const formikError = css`
+  color: red;
+  font-size: 12px;
+  margin-top: -15px;
+`;
+
+export const blogListContainer = css`
+  padding: 20px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+export const paddingBottom30 = css`
+  padding-bottom: 30px;
+`;
+
+export const blogInnerContainer = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20px;
+`;
+
+export const blogByIdContainer = css`
+  display: flex;
+  flex-direction: column;
+  margin: 20px 80px;
+`;

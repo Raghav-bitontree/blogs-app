@@ -1,4 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import { fetchBlogById } from "@/redux/features/blogs/blogs-slice";
+import { blogByIdContainer } from "@/styles/styles";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,10 +12,10 @@ const BlogById = () => {
   const blogs = useSelector((state: any) => state.blogs.blogs);
 
   useEffect(() => {
-     dispatch(fetchBlogById(slug as string));
-    }, [dispatch])
-    
-  console.log(blogs,"res")
+    dispatch(fetchBlogById(slug as string));
+  }, [dispatch]);
+
+  console.log(blogs, "res");
 
   const blog = {
     title: "a",
@@ -24,15 +26,13 @@ const BlogById = () => {
   };
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", margin: "20px 80px" }}
-    >
+    <div className={blogByIdContainer}>
       <img
         style={{ margin: "auto" }}
         src={blog?.image}
         alt={blog?.title}
-        height={"300px"}
-        width={"300px"}
+        height={300}
+        width={300}
       />
 
       <h2>{blog?.title}</h2>

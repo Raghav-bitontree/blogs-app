@@ -2,6 +2,7 @@ import { createBlog, updateBlog } from "@/redux/features/blogs/blogs-slice";
 import {
   addEditFormSubmit,
   formStyle,
+  formikError,
   inputStyle,
   textAreaStyle,
 } from "@/styles/styles";
@@ -41,15 +42,17 @@ const BlogAddEditForm = ({
           body: currentBlogData?.body ? currentBlogData?.body : "",
         }}
         validate={(values) => {
-          // const errors = {};
-          // if (!values.email) {
-          //   errors.email = "Required";
-          // } else if (
-          //   !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          // ) {
-          //   errors.email = "Invalid email address";
-          // }
-          // return errors;
+          const errors: any = {};
+          if (!values.title) {
+            errors.title = "Title is Required";
+          }
+          if (!values.description) {
+            errors.description = "Description is Required";
+          }
+          if (!values.body) {
+            errors.body = "Body is  Required";
+          }
+          return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
           isEdit
@@ -87,6 +90,11 @@ const BlogAddEditForm = ({
               onBlur={handleBlur}
               value={values.title}
             />
+
+            {errors.title && touched.title && errors.title ? (
+              <span className={formikError}> {errors.title as any}</span>
+            ) : null}
+
             <input
               type="text"
               className={inputStyle}
@@ -96,6 +104,10 @@ const BlogAddEditForm = ({
               onBlur={handleBlur}
               value={values.description}
             />
+            {errors.description && touched.description && errors.description ? (
+              <span className={formikError}> {errors.description as any}</span>
+            ) : null}
+
             <textarea
               cols={50}
               className={textAreaStyle}
@@ -105,6 +117,9 @@ const BlogAddEditForm = ({
               onBlur={handleBlur}
               value={values.body}
             />
+            {errors.body && touched.body && errors.body ? (
+              <span className={formikError}> {errors.body as any}</span>
+            ) : null}
             <label htmlFor="file-input"> Upload blog image </label>
             <input
               id="file-input"

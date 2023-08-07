@@ -2,7 +2,12 @@
 // eslint-disable-next-line @next/next/no-img-element
 
 import { fetchBlogs } from "@/redux/features/blogs/blogs-slice";
-import { blogLink } from "@/styles/styles";
+import {
+  blogInnerContainer,
+  blogLink,
+  blogListContainer,
+  paddingBottom30,
+} from "@/styles/styles";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,38 +18,24 @@ const BlogList = () => {
   const blogs = useSelector((state: any) => state.blogs.blogs);
 
   useEffect(() => {
-    dispatch(fetchBlogs())
-   }, [dispatch])
-  
+    dispatch(fetchBlogs());
+  }, [dispatch]);
+
   return (
-    <div
-      style={{
-        padding: "20px 80px",
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-      }}
-    >
-      <h1 style={{ paddingBottom: "20px" }}>Blogs List</h1>
+    <div className={blogListContainer}>
+      <h1 className={paddingBottom30}>Blogs List</h1>
       {blogs &&
         blogs.length > 0 &&
-        blogs.map(({values}: any) => {
+        blogs.map(({ values }: any) => {
           return (
             <div style={{ display: "flex" }} key={values.title}>
               <img
                 src={values?.image}
                 alt={values?.title}
-                height={"200px"}
-                width={"300px"}
+                height={200}
+                width={300}
               />
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  margin: "20px",
-                }}
-              >
+              <div className={blogInnerContainer}>
                 <div>
                   <h2>{values?.title}</h2>
                   <h4>{values?.description}</h4>
