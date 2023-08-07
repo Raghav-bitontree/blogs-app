@@ -44,7 +44,7 @@ export const blogSlice = createSlice({
     deleteBlog: (state, { payload }) => {
       return {
         ...state,
-        blogs: [...state.blogs].filter((item) => item.id !== payload),
+        blogs: [...state.blogs].filter((item) => item?.id !== payload),
       };
     },
   },
@@ -71,6 +71,30 @@ export function deleteBlogById(blogId: string) {
       );
       localStorage.setItem("blogs", JSON.stringify(res));
       dispatch(getBlogs(res));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function updateBlogById(payload: any) {
+  return (dispatch: (arg: any) => void) => {
+    try {
+      const response = JSON.parse(localStorage.getItem("blogs") as string);
+    
+      const findBlog = response.find((blog: any) => blog.values.id === payload.id);
+      if (findBlog) {
+        findBlog.values.title = payload.title;
+        findBlog.values.description = payload.description;
+        findBlog.values.body = payload.body;
+        findBlog.values.image = payload.image;
+      }
+      const res = response.filter(
+        ({ values }: { values: { id: string } }) => values?.id !== payload.id
+      );
+      localStorage.setItem("blogs", JSON.stringify([...res, findBlog]));
+      
+      dispatch(getBlogs([...res, findBlog]));
     } catch (error) {
       console.log(error);
     }

@@ -1,4 +1,4 @@
-import { createBlog, updateBlog } from "@/redux/features/blogs/blogs-slice";
+import { createBlog, updateBlogById } from "@/redux/features/blogs/blogs-slice";
 import {
   addEditFormSubmit,
   formStyle,
@@ -57,13 +57,13 @@ const BlogAddEditForm = ({
         onSubmit={(values, { setSubmitting }) => {
           isEdit
             ? dispatch(
-                updateBlog({
+                updateBlogById({
                   id: currentBlogData?.id,
                   title: values.title,
                   description: values?.description,
                   body: values?.body,
                   image: image ? image : currentBlogData?.image,
-                })
+                }) as any
               )
             : dispatch(createBlog({ values, image }));
             setModal(false);

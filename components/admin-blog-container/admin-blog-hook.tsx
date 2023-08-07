@@ -27,32 +27,32 @@ export default function useAdminBlogControl() {
   const getTableData = (data: any) => {
     const list: any = [];
     data?.length > 0 &&
-      data?.forEach(({ values }: any) => {
+      data?.forEach((dat: any) => {
         let eachData = [
-          values?.title,
+          dat?.values?.title,
           <img
             style={{ borderRadius: "8px" }}
-            src={values?.image}
+            src={dat?.values?.image}
             width={60}
             height={60}
             alt="img"
           />,
           <span
             className={blogLink}
-            onClick={() => router.push(`/blogs/${values?.id}`)}
+            onClick={() => router.push(`/blogs/${dat?.values?.id}`)}
           >
-            {values?.description?.substring(0, 15)} ...
+            {dat?.values?.description?.substring(0, 15)} ...
           </span>,
           <div>
             <Edit
               sx={{ cursor: "pointer" }}
-              onClick={() => handleEdit(values)}
+              onClick={() => handleEdit(dat?.values)}
             />
             <Delete
               sx={{ cursor: "pointer" }}
               onClick={() => {
-                dispatch(deleteBlog(values?.id));
-                dispatch(deleteBlogById(values?.id))
+                dispatch(deleteBlog(dat?.values?.id));
+                dispatch(deleteBlogById(dat?.values?.id))
               }}
             />
           </div>,
