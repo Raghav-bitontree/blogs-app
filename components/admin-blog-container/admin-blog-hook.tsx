@@ -1,6 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
-import { deleteBlog, deleteBlogById, fetchBlogs } from "@/redux/features/blogs/blogs-slice";
+import {
+  deleteBlog,
+  deleteBlogById,
+  fetchBlogs,
+} from "@/redux/features/blogs/blogs-slice";
 import { blogLink } from "@/styles/styles";
 import { Delete, Edit } from "@mui/icons-material";
 import { useRouter } from "next/router";
@@ -30,13 +34,17 @@ export default function useAdminBlogControl() {
       data?.forEach((dat: any) => {
         let eachData = [
           dat?.values?.title,
-          <img
-            style={{ borderRadius: "8px" }}
-            src={dat?.values?.image}
-            width={60}
-            height={60}
-            alt="img"
-          />,
+          dat?.values?.image ? (
+            <img
+              style={{ borderRadius: "8px" }}
+              src={dat?.values?.image}
+              width={60}
+              height={60}
+              alt="img"
+            />
+          ) : (
+            "_"
+          ),
           <span
             className={blogLink}
             onClick={() => router.push(`/blogs/${dat?.values?.id}`)}
