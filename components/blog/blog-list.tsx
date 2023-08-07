@@ -7,6 +7,7 @@ import {
   blogLink,
   blogListContainer,
   blogListHeader,
+  blogListInnerContainer,
   paddingBottom30,
 } from "@/styles/styles";
 import { ArrowBackIos } from "@mui/icons-material";
@@ -32,32 +33,35 @@ const BlogList = () => {
         />
         <h1>Blogs List</h1>
       </div>
-      {blogs &&
-        blogs.length > 0 &&
-        blogs.map(({ values }: any) => {
-          return (
-            <div style={{ display: "flex" }} key={values.title}>
-              <img
-                src={values?.image}
-                alt={values?.title}
-                height={200}
-                width={300}
-              />
-              <div className={blogInnerContainer}>
-                <div>
-                  <h2>{values?.title}</h2>
-                  <h4>{values?.description}</h4>
+      <div className={blogListInnerContainer}>
+        {blogs &&
+          blogs.length > 0 &&
+          blogs.map(({ values }: any) => {
+            return (
+              <div style={{ display: "flex" }} key={values.title}>
+                <img
+                  style={{ borderRadius: "6px" }}
+                  src={values?.image}
+                  alt={values?.title}
+                  height={200}
+                  width={200}
+                />
+                <div className={blogInnerContainer}>
+                  <div>
+                    <h2>{values?.title}</h2>
+                    <h4>{values?.description}</h4>
+                  </div>
+                  <span
+                    className={blogLink}
+                    onClick={() => router.push(`/blogs/${values?.id}`)}
+                  >
+                    Know more
+                  </span>
                 </div>
-                <span
-                  className={blogLink}
-                  onClick={() => router.push(`/blogs/${values?.id}`)}
-                >
-                  Know more
-                </span>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+      </div>
     </div>
   );
 };

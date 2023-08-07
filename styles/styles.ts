@@ -123,3 +123,8 @@ export const blogDescription = css`
   font-size: 20px;
   font-weight: 400;
 `;
+
+export const blogListInnerContainer = css`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`;
