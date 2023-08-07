@@ -15,8 +15,10 @@ export default function useAdminBlogControl() {
   const [currentBlogData, setCurrentBlogData] = useState();
   const [modal, setModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const dispatch: any = useDispatch();
   const router = useRouter();
+  const [deleteData, setDeleteData] = useState();
 
   useEffect(() => {
     dispatch(fetchBlogs());
@@ -26,6 +28,12 @@ export default function useAdminBlogControl() {
     setCurrentBlogData(item);
     setModal(true);
     setIsEdit(true);
+  };
+
+  const handleDelete = (item: any) => {
+    setDeleteModal(true);
+    setModal(true);
+    setDeleteData(item);
   };
 
   const getTableData = (data: any) => {
@@ -58,10 +66,7 @@ export default function useAdminBlogControl() {
             />
             <Delete
               sx={{ cursor: "pointer" }}
-              onClick={() => {
-                dispatch(deleteBlog(dat?.values?.id));
-                dispatch(deleteBlogById(dat?.values?.id))
-              }}
+              onClick={() => handleDelete(dat?.values)}
             />
           </div>,
         ];
@@ -79,5 +84,8 @@ export default function useAdminBlogControl() {
     getTableData,
     isEdit,
     setIsEdit,
+    deleteModal,
+    setDeleteModal,
+    deleteData,
   };
 }

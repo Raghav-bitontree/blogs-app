@@ -1,7 +1,19 @@
+import { deleteBlog, deleteBlogById } from "@/redux/features/blogs/blogs-slice";
 import { modalStyle } from "@/styles/mui-styles";
+import { addButton, secondaryButton } from "@/styles/styles";
 import { Box, Modal, Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
 
-const MuiModal = ({ modal, setModal, add, content }: any) => {
+const MuiModal = ({
+  modal,
+  setModal,
+  add,
+  content,
+  deleteModal,
+  setDeleteModal,
+  deleteData,
+}: any) => {
+  const dispatch = useDispatch();
   return (
     <Modal
       open={modal}
@@ -9,12 +21,44 @@ const MuiModal = ({ modal, setModal, add, content }: any) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={modalStyle}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          {add ? "Add Blog" : "Edit Blog"}
-        </Typography>
-        {content}
-      </Box>
+      {!deleteModal ? (
+        <Box sx={modalStyle}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            {add ? "Add Blog" : "Edit Blog"}
+          </Typography>
+          {content}
+        </Box>
+      ) : (
+        <Box sx={modalStyle}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Are you sure you want to delete ?
+          </Typography>
+          <div style={{ margin: "20px auto" }}>
+            <button
+              className={addButton}
+              onClick={() => {
+                console.log(deleteData);
+                dispatch(deleteBlog(deleteData?.id));
+                dispatch(deleteBlogById(deleteData?.id) as any);
+                setModal(false);
+                setDeleteModal(false);
+              }}
+            >
+              {" "}
+              Yes{" "}
+            </button>
+            <button
+              className={secondaryButton}
+              onClick={() => {
+                setModal(false);
+                setDeleteModal(false);
+              }}
+            >
+              No
+            </button>
+          </div>
+        </Box>
+      )}
     </Modal>
   );
 };

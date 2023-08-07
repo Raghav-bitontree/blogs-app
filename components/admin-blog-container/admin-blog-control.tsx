@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 import useAdminBlogControl from "./admin-blog-hook";
 
 const AdminBlogControl = () => {
-
   const blogs = useSelector((state: any) => state.blogs.blogs);
   const {
     modal,
@@ -19,6 +18,9 @@ const AdminBlogControl = () => {
     getTableData,
     isEdit,
     setIsEdit,
+    deleteModal,
+    setDeleteModal,
+    deleteData,
   } = useAdminBlogControl();
 
   return (
@@ -43,14 +45,19 @@ const AdminBlogControl = () => {
       <MuiModal
         modal={modal}
         setModal={setModal}
+        deleteModal={deleteModal}
+        deleteData={deleteData}
+        setDeleteModal={setDeleteModal}
         add={isEdit ? false : true}
         content={
-          <BlogAddEditForm
-            setModal={setModal}
-            isEdit={isEdit}
-            setIsEdit={setIsEdit}
-            currentBlogData={currentBlogData}
-          />
+          !deleteModal && (
+            <BlogAddEditForm
+              setModal={setModal}
+              isEdit={isEdit}
+              setIsEdit={setIsEdit}
+              currentBlogData={currentBlogData}
+            />
+          )
         }
       />
     </>

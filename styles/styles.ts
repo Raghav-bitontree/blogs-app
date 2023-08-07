@@ -15,6 +15,14 @@ export const addButton = css`
   color: white;
 `;
 
+export const secondaryButton = css`
+  ${addButton};
+  margin-left: 20px;
+  border: 1px solid black;
+  background: transparent;
+  color: black;
+`;
+
 export const tableMargin = css`
   margin: 30px 80px;
 `;
