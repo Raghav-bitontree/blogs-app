@@ -1,5 +1,10 @@
 import { createBlog, updateBlog } from "@/redux/features/blogs/blogs-slice";
-import { addEditFormSubmit, formStyle, inputStyle } from "@/styles/styles";
+import {
+  addEditFormSubmit,
+  formStyle,
+  inputStyle,
+  textAreaStyle,
+} from "@/styles/styles";
 import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import { useState } from "react";
@@ -91,9 +96,9 @@ const BlogAddEditForm = ({
               onBlur={handleBlur}
               value={values.description}
             />
-            <input
-              type="text"
-              className={inputStyle}
+            <textarea
+              cols={50}
+              className={textAreaStyle}
               name="body"
               placeholder="Body"
               onChange={handleChange}
