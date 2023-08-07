@@ -126,7 +126,6 @@ export const {
   getBlogs,
   getBlogById,
   deleteBlog,
-  createBlog,
   updateBlog,
 } = blogSlice.actions;
 
