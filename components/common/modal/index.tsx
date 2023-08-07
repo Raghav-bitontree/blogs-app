@@ -17,7 +17,9 @@ const MuiModal = ({
   return (
     <Modal
       open={modal}
-      onClose={() => setModal(false)}
+      onClose={() => {
+        setModal(false);
+      }}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -37,7 +39,6 @@ const MuiModal = ({
             <button
               className={addButton}
               onClick={() => {
-                console.log(deleteData);
                 dispatch(deleteBlog(deleteData?.id));
                 dispatch(deleteBlogById(deleteData?.id) as any);
                 setModal(false);
