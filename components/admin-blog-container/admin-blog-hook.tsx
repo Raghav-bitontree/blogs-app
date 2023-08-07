@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
-import { deleteBlog, fetchBlogs } from "@/redux/features/blogs/blogs-slice";
+import { deleteBlog, deleteBlogById, fetchBlogs } from "@/redux/features/blogs/blogs-slice";
 import { blogLink } from "@/styles/styles";
 import { Delete, Edit } from "@mui/icons-material";
 import { useRouter } from "next/router";
@@ -15,8 +15,8 @@ export default function useAdminBlogControl() {
   const router = useRouter();
 
   useEffect(() => {
-    dispatch(fetchBlogs())
-   }, [dispatch])
+    dispatch(fetchBlogs());
+  }, [dispatch]);
 
   const handleEdit = (item: any) => {
     setCurrentBlogData(item);
@@ -27,27 +27,33 @@ export default function useAdminBlogControl() {
   const getTableData = (data: any) => {
     const list: any = [];
     data?.length > 0 &&
-      data?.forEach((item: any) => {
+      data?.forEach(({ values }: any) => {
         let eachData = [
-          item?.title,
+          values?.title,
           <img
             style={{ borderRadius: "8px" }}
-            src={item?.image}
+            src={values?.image}
             width={60}
             height={60}
             alt="img"
           />,
           <span
             className={blogLink}
-            onClick={() => router.push(`/blogs/${item?.id}`)}
+            onClick={() => router.push(`/blogs/${values?.id}`)}
           >
-            {item?.description?.substring(0, 15)} ...
+            {values?.description?.substring(0, 15)} ...
           </span>,
           <div>
-            <Edit sx={{ cursor: "pointer" }} onClick={() => handleEdit(item)} />
+            <Edit
+              sx={{ cursor: "pointer" }}
+              onClick={() => handleEdit(values)}
+            />
             <Delete
               sx={{ cursor: "pointer" }}
-              onClick={() => dispatch(deleteBlog(item?.id))}
+              onClick={() => {
+                dispatch(deleteBlog(values?.id));
+                dispatch(deleteBlogById(values?.id))
+              }}
             />
           </div>,
         ];

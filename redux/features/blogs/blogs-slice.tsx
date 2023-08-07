@@ -62,6 +62,21 @@ export function fetchBlogs() {
   };
 }
 
+export function deleteBlogById(blogId: string) {
+  return (dispatch: (arg: any) => void) => {
+    try {
+      const response = JSON.parse(localStorage.getItem("blogs") as string);
+      const res = response.filter(
+        ({ values }: { values: { id: string } }) => values?.id !== blogId
+      );
+      localStorage.setItem("blogs", JSON.stringify(res));
+      dispatch(getBlogs(res));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
 export function fetchBlogById(blogId: string) {
   return (dispatch: (arg: any) => void) => {
     try {
