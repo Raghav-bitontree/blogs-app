@@ -10,20 +10,11 @@ const BlogById = () => {
   const { slug } = query;
   const dispatch: any = useDispatch();
   const blogs = useSelector((state: any) => state.blogs.blogs);
-
+  const blog = blogs?.[0]?.values;
   useEffect(() => {
     dispatch(fetchBlogById(slug as string));
   }, [dispatch]);
 
-  console.log(blogs, "res");
-
-  const blog = {
-    title: "a",
-    description: "saffa",
-    body: "fsaffa",
-    image:
-      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
-  };
 
   return (
     <div className={blogByIdContainer}>

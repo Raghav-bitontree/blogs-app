@@ -81,8 +81,10 @@ export function updateBlogById(payload: any) {
   return (dispatch: (arg: any) => void) => {
     try {
       const response = JSON.parse(localStorage.getItem("blogs") as string);
-    
-      const findBlog = response.find((blog: any) => blog.values.id === payload.id);
+
+      const findBlog = response.find(
+        (blog: any) => blog.values.id === payload.id
+      );
       if (findBlog) {
         findBlog.values.title = payload.title;
         findBlog.values.description = payload.description;
@@ -93,7 +95,7 @@ export function updateBlogById(payload: any) {
         ({ values }: { values: { id: string } }) => values?.id !== payload.id
       );
       localStorage.setItem("blogs", JSON.stringify([...res, findBlog]));
-      
+
       dispatch(getBlogs([...res, findBlog]));
     } catch (error) {
       console.log(error);
@@ -105,8 +107,10 @@ export function fetchBlogById(blogId: string) {
   return (dispatch: (arg: any) => void) => {
     try {
       const response = JSON.parse(localStorage.getItem("blogs") as string);
-
-      dispatch(getBlogs(response));
+      const findBlog = response.find((blog: any) => {
+        return Number(blog.values.id) === Number(blogId);
+      });
+      dispatch(getBlogs([findBlog]));
     } catch (error) {
       console.log(error);
     }
