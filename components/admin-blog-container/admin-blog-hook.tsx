@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
 import { deleteBlog } from "@/redux/features/blogs/blogs-slice";
 import { blogLink } from "@/styles/styles";
@@ -25,7 +26,13 @@ export default function useAdminBlogControl() {
       data?.forEach((item: any) => {
         let eachData = [
           item?.title,
-          "image",
+          <img
+            style={{ borderRadius: "8px" }}
+            src={item?.image}
+            width={60}
+            height={60}
+            alt="img"
+          />,
           <span
             className={blogLink}
             onClick={() => router.push(`/blogs/${item?.id}`)}

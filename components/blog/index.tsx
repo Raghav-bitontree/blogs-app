@@ -11,7 +11,6 @@ const BlogById = () => {
 
   useEffect(() => {
     const res = dispatch(getBlog(slug));
-    console.log(res);
   }, [query]);
 
   const blog = {

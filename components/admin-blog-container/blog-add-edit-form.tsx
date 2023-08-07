@@ -2,6 +2,7 @@ import { createBlog, updateBlog } from "@/redux/features/blogs/blogs-slice";
 import { addEditFormSubmit, formStyle, inputStyle } from "@/styles/styles";
 import { useDispatch } from "react-redux";
 import { Formik } from "formik";
+import { useState } from "react";
 
 const BlogAddEditForm = ({
   setModal,
@@ -10,6 +11,20 @@ const BlogAddEditForm = ({
   setIsEdit,
 }: any) => {
   const dispatch = useDispatch();
+  const [image, setImage] = useState("");
+
+  const handleUploadImage = (e: any) => {
+    const file = e.target.files?.[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setImage(reader?.result as any);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
   return (
     <div>
       <Formik
@@ -19,7 +34,6 @@ const BlogAddEditForm = ({
             ? currentBlogData?.description
             : "",
           body: currentBlogData?.body ? currentBlogData?.body : "",
-          image: currentBlogData?.image ? currentBlogData?.image : "",
         }}
         validate={(values) => {
           // const errors = {};
@@ -40,10 +54,10 @@ const BlogAddEditForm = ({
                   title: values.title,
                   description: values?.description,
                   body: values?.body,
-                  image: values?.image,
+                  image: image ? image : currentBlogData?.image,
                 })
               )
-            : dispatch(createBlog({ values }));
+            : dispatch(createBlog({ values, image }));
           setModal(false);
           setIsEdit(false);
         }}
@@ -86,14 +100,12 @@ const BlogAddEditForm = ({
               onBlur={handleBlur}
               value={values.body}
             />
+            <label htmlFor="file-input"> Upload blog image </label>
             <input
-              type="text"
-              name="image"
-              className={inputStyle}
-              placeholder="Image"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.image}
+              id="file-input"
+              placeholder="Upload blog image"
+              type="file"
+              onChange={handleUploadImage}
             />
             <button
               className={addEditFormSubmit}

@@ -18,6 +18,7 @@ export const blogSlice = createSlice({
     },
     createBlog: (state, { payload }) => {
       payload.values.id = Date.now();
+      payload.values.image = payload.image;
       state.blogs.unshift(payload?.values);
     },
     updateBlog: (state, { payload }) => {
