@@ -1,18 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
-import { deleteBlog } from "@/redux/features/blogs/blogs-slice";
+import { deleteBlog, fetchBlogs } from "@/redux/features/blogs/blogs-slice";
 import { blogLink } from "@/styles/styles";
 import { Delete, Edit } from "@mui/icons-material";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 export default function useAdminBlogControl() {
   const [currentBlogData, setCurrentBlogData] = useState();
   const [modal, setModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
   const router = useRouter();
+
+  useEffect(() => {
+    dispatch(fetchBlogs())
+   }, [dispatch])
 
   const handleEdit = (item: any) => {
     setCurrentBlogData(item);
