@@ -7,7 +7,7 @@ import {
 } from "@/redux/features/blogs/blogs-slice";
 import { blogLink } from "@/styles/styles";
 import { formikInitialValue } from "@/utils/helper";
-import { Delete, Edit } from "@mui/icons-material";
+import { Delete, Edit, Visibility } from "@mui/icons-material";
 import { Button, IconButton } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -61,13 +61,16 @@ export default function useAdminBlog() {
             "_"
           ),
           dat?.values?.title,
-          <span
-            className={blogLink}
-            onClick={() => router.push(`/blogs/${dat?.values?.id}`)}
-          >
-            {dat?.values?.description?.substring(0, 15)} ...
+          <span onClick={() => router.push(`/blogs/${dat?.values?.id}`)}>
+            {dat?.values?.description?.substring(0, 30)}
           </span>,
           <div style={{ display: "flex", gap: "2px" }}>
+            <IconButton>
+              <Visibility
+                sx={{ cursor: "pointer", color: "black" }}
+                onClick={() => router.push(`/blogs/${dat?.values?.id}`)}
+              />
+            </IconButton>
             <IconButton>
               <Edit
                 sx={{ cursor: "pointer", color: "black" }}
