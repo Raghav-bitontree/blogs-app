@@ -67,16 +67,16 @@ export default function useAdminBlog() {
           >
             {dat?.values?.description?.substring(0, 15)} ...
           </span>,
-          <div style={{ display: "flex", gap: "10px" }}>
+          <div style={{ display: "flex", gap: "2px" }}>
             <IconButton>
               <Edit
-                sx={{ cursor: "pointer" }}
+                sx={{ cursor: "pointer", color: "black" }}
                 onClick={() => handleEdit(dat?.values)}
               />
             </IconButton>
             <IconButton>
               <Delete
-                sx={{ cursor: "pointer" }}
+                sx={{ cursor: "pointer", color: "black" }}
                 onClick={() => handleDelete(dat?.values)}
               />
             </IconButton>
