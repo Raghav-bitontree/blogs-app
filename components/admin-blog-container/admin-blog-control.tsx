@@ -11,6 +11,7 @@ import BlogAddEditForm from "./blog-add-edit-form";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import useAdminBlog from "./admin-blog-hook";
+import Header from "../header";
 
 const AdminBlogControl = () => {
   const blogs = useSelector((state: any) => state.blogs.blogs);
@@ -31,7 +32,7 @@ const AdminBlogControl = () => {
 
   return (
     <>
-      <div className={header}>THE BLOG</div>
+      <Header />
       <div className={pageTitleSection}>
         <h3 style={{ cursor: "pointer" }} onClick={() => router.push("/blogs")}>
           Blogs List

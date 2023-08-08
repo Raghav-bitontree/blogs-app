@@ -4,6 +4,7 @@ export const header = css`
   background-color: black;
   height: 40px;
   color: white;
+  cursor: pointer;
   width: 100vw !important;
   display: flex;
   justify-content: center;

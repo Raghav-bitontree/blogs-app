@@ -5,6 +5,8 @@ import { ArrowBackIos } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Header from "../header";
+import Head from "next/head";
 
 const BlogById = () => {
   const router = useRouter();
@@ -19,6 +21,11 @@ const BlogById = () => {
 
   return (
     <>
+      <Head>
+        <title>{blog?.title}</title>
+        <meta name="title" content={blog?.title} />
+      </Head>
+      <Header />
       <ArrowBackIos
         style={{ cursor: "pointer", margin: "20px 80px" }}
         onClick={() => router.back()}
