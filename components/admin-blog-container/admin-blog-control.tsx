@@ -32,7 +32,6 @@ const AdminBlogControl = () => {
 
   return (
     <>
-      <Header />
       <div className={pageTitleSection}>
         <h3 style={{ cursor: "pointer" }} onClick={() => router.push("/blogs")}>
           Blogs List

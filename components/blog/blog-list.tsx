@@ -27,7 +27,6 @@ const BlogList = () => {
 
   return (
     <>
-      <Header />
       <div className={blogListContainer}>
         <div className={blogListHeader}>
           <ArrowBackIos

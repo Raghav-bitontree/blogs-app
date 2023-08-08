@@ -25,7 +25,6 @@ const BlogById = () => {
         <title>{blog?.title}</title>
         <meta name="title" content={blog?.title} />
       </Head>
-      <Header />
       <ArrowBackIos
         style={{ cursor: "pointer", margin: "20px 80px" }}
         onClick={() => router.back()}
