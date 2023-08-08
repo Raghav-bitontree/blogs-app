@@ -1,14 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
-import {
-  deleteBlog,
-  deleteBlogById,
-  fetchBlogs,
-} from "@/redux/features/blogs/blogs-slice";
+import { fetchBlogs } from "@/redux/features/blogs/blogs-slice";
 import { iconStyle } from "@/styles/mui-styles";
 import { formikInitialValue } from "@/utils/helper";
 import { Delete, Edit, Visibility } from "@mui/icons-material";
-import { Button, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
