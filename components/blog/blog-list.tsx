@@ -6,6 +6,7 @@ import {
   blogInnerContainer,
   blogLink,
   blogListContainer,
+  blogListDescription,
   blogListHeader,
   blogListInnerContainer,
   paddingBottom30,
@@ -51,7 +52,9 @@ const BlogList = () => {
                   <div className={blogInnerContainer}>
                     <div>
                       <h2>{values?.title}</h2>
-                      <h4>{values?.description}</h4>
+                      <h4 className={blogListDescription}>
+                        {values?.description}
+                      </h4>
                     </div>
                     <span
                       className={blogLink}

@@ -130,3 +130,7 @@ export const blogListInnerContainer = css`
   grid-gap: 40px;
   grid-template-columns: 1fr 1fr;
 `;
+
+export const blogListDescription = css`
+  font-weight: 400;
+`;

@@ -10,4 +10,9 @@ const modalStyle = {
   p: 4,
 };
 
-export { modalStyle };
+const iconStyle = {
+  cursor: "pointer",
+  color: "black",
+};
+
+export { modalStyle, iconStyle };

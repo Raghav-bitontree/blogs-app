@@ -5,6 +5,7 @@ import {
   deleteBlogById,
   fetchBlogs,
 } from "@/redux/features/blogs/blogs-slice";
+import { iconStyle } from "@/styles/mui-styles";
 import { blogLink } from "@/styles/styles";
 import { formikInitialValue } from "@/utils/helper";
 import { Delete, Edit, Visibility } from "@mui/icons-material";
@@ -67,19 +68,16 @@ export default function useAdminBlog() {
           <div style={{ display: "flex", gap: "2px" }}>
             <IconButton>
               <Visibility
-                sx={{ cursor: "pointer", color: "black" }}
+                sx={iconStyle}
                 onClick={() => router.push(`/blogs/${dat?.values?.id}`)}
               />
             </IconButton>
             <IconButton>
-              <Edit
-                sx={{ cursor: "pointer", color: "black" }}
-                onClick={() => handleEdit(dat?.values)}
-              />
+              <Edit sx={iconStyle} onClick={() => handleEdit(dat?.values)} />
             </IconButton>
             <IconButton>
               <Delete
-                sx={{ cursor: "pointer", color: "black" }}
+                sx={iconStyle}
                 onClick={() => handleDelete(dat?.values)}
               />
             </IconButton>
