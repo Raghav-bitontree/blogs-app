@@ -17,7 +17,7 @@ const BlogById = () => {
   const blog = blogs?.values;
   useEffect(() => {
     dispatch(fetchBlogById(slug as string));
-  }, [dispatch]);
+  }, [dispatch, slug]);
 
   return (
     <>

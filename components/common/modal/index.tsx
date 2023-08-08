@@ -47,8 +47,7 @@ const MuiModal = ({
                 setDeleteModal(false);
               }}
             >
-              {" "}
-              Yes{" "}
+              Yes
             </button>
             <button
               className={secondaryButton}
