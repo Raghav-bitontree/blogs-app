@@ -49,10 +49,10 @@ const AdminBlogControl = () => {
       </div>
       <div className={tableMargin}>
         <MUIDataTable
+          title={"Blogs"}
           data={getTableData(blogs)}
           columns={columns}
           options={options as any}
-          title={""}
         />
       </div>
       <MuiModal

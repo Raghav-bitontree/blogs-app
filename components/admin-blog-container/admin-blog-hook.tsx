@@ -8,6 +8,7 @@ import {
 import { blogLink } from "@/styles/styles";
 import { formikInitialValue } from "@/utils/helper";
 import { Delete, Edit } from "@mui/icons-material";
+import { Button, IconButton } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -66,15 +67,19 @@ export default function useAdminBlog() {
           >
             {dat?.values?.description?.substring(0, 15)} ...
           </span>,
-          <div>
-            <Edit
-              sx={{ cursor: "pointer" }}
-              onClick={() => handleEdit(dat?.values)}
-            />
-            <Delete
-              sx={{ cursor: "pointer" }}
-              onClick={() => handleDelete(dat?.values)}
-            />
+          <div style={{ display: "flex", gap: "10px" }}>
+            <IconButton>
+              <Edit
+                sx={{ cursor: "pointer" }}
+                onClick={() => handleEdit(dat?.values)}
+              />
+            </IconButton>
+            <IconButton>
+              <Delete
+                sx={{ cursor: "pointer" }}
+                onClick={() => handleDelete(dat?.values)}
+              />
+            </IconButton>
           </div>,
         ];
         list.push(eachData);
