@@ -9,13 +9,11 @@ import {
   blogListDescription,
   blogListHeader,
   blogListInnerContainer,
-  paddingBottom30,
 } from "@/styles/styles";
 import { ArrowBackIos } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "../header";
 
 const BlogList = () => {
   const router = useRouter();
