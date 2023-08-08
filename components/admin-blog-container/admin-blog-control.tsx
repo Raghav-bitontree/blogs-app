@@ -1,9 +1,4 @@
-import {
-  addButton,
-  header,
-  pageTitleSection,
-  tableMargin,
-} from "@/styles/styles";
+import { addButton, pageTitleSection, tableMargin } from "@/styles/styles";
 import { columns, formikInitialValue, options } from "@/utils/helper";
 import MUIDataTable from "mui-datatables";
 import MuiModal from "../common/modal";

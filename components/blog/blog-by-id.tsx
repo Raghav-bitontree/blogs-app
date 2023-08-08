@@ -5,7 +5,6 @@ import { ArrowBackIos } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "../header";
 import Head from "next/head";
 
 const BlogById = () => {
