@@ -48,7 +48,6 @@ export default function useAdminBlog() {
     data?.length > 0 &&
       data?.forEach((dat: any) => {
         let eachData = [
-          dat?.values?.title,
           dat?.values?.image ? (
             <img
               style={{ borderRadius: "8px" }}
@@ -60,6 +59,7 @@ export default function useAdminBlog() {
           ) : (
             "_"
           ),
+          dat?.values?.title,
           <span
             className={blogLink}
             onClick={() => router.push(`/blogs/${dat?.values?.id}`)}
